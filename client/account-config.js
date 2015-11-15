@@ -17,9 +17,5 @@ Accounts.ui.config({
         fieldName: 'bank',
         fieldLabel: 'Bank Account Number',
         saveToProfile: false        
-    },
-    {
-        fieldName: 'phoneNo',
-        fieldLabel: 'Phone Number'
     }]
 });
