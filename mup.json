@@ -1,0 +1,30 @@
+{
+  "servers": [
+    {
+      "host": "188.166.233.37",
+      "username": "root",
+      "password": "Mk9233610"
+    }
+  ],
+
+  "setupMongo": false,
+
+  "setupNode": true,
+
+  "nodeVersion": "0.10.40",
+
+  "setupPhantom": true,
+
+  "enableUploadProgressBar": true,
+
+  "appName": "transchat",
+
+  "app": ".",
+
+  "env": {
+    "ROOT_URL": "http://vmkhoi.com",
+    "MONGO_URL": "mongodb://vmkhoi:Mk9233610@c553.galaga.0.mongolayer.com:10553,galaga.1.mongolayer.com:10548,galaga.0.mongolayer.com:10553/vmkhoi?replicaSet=set-563dbcc92ba9805ac3000f43"
+  },
+
+  "deployCheckWaitTime": 50
+}

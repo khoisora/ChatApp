@@ -1,0 +1,84 @@
+
+<core-scaffold>
+    <core-header-panel navigation flex>
+        <core-toolbar id="navheader" class="tall">
+            <div class="middle avatar {{$root.currentUser.color}}" style="background-image: url({{$root.currentUser.avatar}})"></div>
+            <div class="bottom uuid"></div>
+        </core-toolbar>
+
+        <section layout vertical id="onlineList" >
+
+            <div class="input-group" style="margin: 15px;">                
+                <input class="form-control" ng-model="searchFriend" placeholder="Search Friend" >
+                <span class="input-group-addon"><i class="mdi-action-search"></i></span>
+            </div>
+
+            
+            <core-menu>
+                <div context-menu data-target="menu-{{user._id}}"
+                 ng-repeat="user in users | filter:{username:searchFriend}" ng-class="{'brown-background' : toUserId === user._id}" ng-click="switchToUser(user._id)">
+                    <paper-item>
+                        <span class="avatar {{user.color}}" style="background-image: url({{user.avatar}})"></span>
+                        {{user.username}}
+                    </paper-item>
+
+                    <hr style="margin:0">
+
+                    <!--Right click menu-->
+                    <div class="dropdown position-fixed" id="menu-{{user._id}}">
+                      <ul class="dropdown-menu" role="menu">
+                        <li>
+                          <a class="pointer" role="menuitem" tabindex="2"
+                             ng-click="sendMoneyTo(user)">
+                             Send cash to {{user.username}}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                </div>
+            </core-menu>
+        </section>
+    </core-header-panel>
+
+    <div tool layout horizontal>
+        <blaze-template name="_loginButtons"></blaze-template>        
+    </div>
+
+    <section layout vertical fit id="chat">
+        <div flex class="chat-list" scroll-glue>
+
+            <div ng-show="showSucceeded" class="alert alert-dismissable alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Transaction succeeded! 
+            </div>
+            <div ng-show="showFailed" class="alert alert-dismissable alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                Transaction failed! Your amount is insufficient.
+            </div>
+
+            <section class="message user-list" layout horizontal ng-repeat="msg in messages">
+                <div class="avatar {{toUser.color}}" style="background-image: url({{toUser.avatar}})">
+                    
+                </div>
+                <div flex>
+                    <div class="username">{{msg.sender}}</div>
+                    <div class="text">{{msg.message}}</div>
+                </div>
+                <div><span am-time-ago="msg.ts"></span></div>
+            </section>
+
+        </div>
+
+        <div class="shim"></div>
+
+        <div class="send-message" layout horizontal>
+            <div flex class="form-group">
+                    <input class="form-control" ng-model="message" placeholder="Your message..." ng-enter="sendMessage()">
+            </div>
+            <i class="btn btn-danger btn-fab btn-raised mdi-communication-message" ng-click="sendMessage()"></i>
+            <i class="btn btn-danger btn-fab btn-raised mdi-editor-attach-money" ng-click="sendMoneyTo(toUser)"> </i>
+        </div>
+    </section>
+</core-scaffold>
+
