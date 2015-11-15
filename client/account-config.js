@@ -20,7 +20,6 @@ Accounts.ui.config({
     },
     {
         fieldName: 'phoneNo',
-        fieldLabel: 'Phone Number',
-        saveToProfile: false        
+        fieldLabel: 'Phone Number'
     }]
 });
